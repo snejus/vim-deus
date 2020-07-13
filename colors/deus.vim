@@ -407,9 +407,9 @@ if version >= 703
   call s:HL('CursorLineNr', s:fg1, s:bg2)
 endif
 
-" Weird black color breaks 
-hi! link NonText deusGreen 
-hi! link Ignore deusPurple 
+" Weird black color breaks
+hi! link NonText deusGreen
+hi! link Ignore deusPurple
 hi! link SpecialKey deusOrange
 
 call s:HL('Visual',    s:none,  s:bg3, s:invert_selection)
@@ -420,8 +420,8 @@ call s:HL('IncSearch', s:bg0, s:hls_cursor)
 
 call s:HL('Underlined', s:blue, s:none, s:underline)
 
-call s:HL('StatusLine',   s:bg2, s:fg1, s:bold . s:inverse)
-call s:HL('StatusLineNC', s:bg2, s:fg1, s:bold . s:inverse)
+call s:HL('StatusLine', s:fg0, s:bg4, s:bold)
+call s:HL('StatusLineNC', s:fg2, s:bg2, s:bold)
 
 " The column separating vertically split windows
 call s:HL('VertSplit', s:fg4, s:vert_split)
@@ -440,7 +440,7 @@ call s:HL('ErrorMsg',   s:red, s:bg1, s:bold)
 " More prompt: -- More --
 hi! link MoreMsg deusYellowBold
 " Current mode message: -- INSERT --
-hi! link ModeMsg deusYellowBold
+hi! link ModeMsg deusBlueBold
 " 'Press enter' prompt and yes/no questions
 hi! link Question deusOrangeBold
 " Warning messages
@@ -456,7 +456,7 @@ call s:HL('LineNr', s:number_column)
 call s:HL('SignColumn', s:none, s:sign_column)
 
 " Line used for closed folds
-call s:HL('Folded', s:gray, s:bg2, s:italic)
+call s:HL('Folded', s:blue, s:bg0, s:bold)
 " Column where folds are displayed
 call s:HL('FoldColumn', s:gray, s:bg2)
 
@@ -504,7 +504,7 @@ hi! link Keyword deusRed
 " Variable name
 hi! link Identifier deusBlue
 " Function name
-hi! link Function deusGreenBold
+hi! link Function deusOrangeBold
 
 " Generic preprocessor
 hi! link PreProc deusAqua
@@ -523,7 +523,7 @@ hi! link Constant deusPurple
 hi! link Character deusPurple
 " String constant: "this is a string"
 if g:deus_improved_strings == 0
-  call s:HL('String',  s:green, s:none, s:italicize_strings)
+  call s:HL('String',  s:yellow, s:none, s:italicize_strings)
 else
   call s:HL('String',  s:bg1, s:fg1, s:italicize_strings)
 endif
@@ -548,7 +548,7 @@ hi! link Typedef deusYellow
 
 if version >= 700
   " Popup menu: normal item
-  call s:HL('Pmenu', s:fg1, s:bg2)
+  call s:HL('Pmenu', s:orange, s:bg0, s:bold)
   " Popup menu: selected item
   call s:HL('PmenuSel', s:bg2, s:blue, s:bold)
   " Popup menu: scrollbar
@@ -560,14 +560,14 @@ endif
 " }}}
 " Diffs: {{{
 
-call s:HL('DiffDelete', s:red, s:bg0, s:inverse)
-call s:HL('DiffAdd',    s:green, s:bg0, s:inverse)
+call s:HL('DiffDelete', s:red, s:bg0, s:bold)
+call s:HL('DiffAdd',    s:green, s:bg0, s:bold)
 "call s:HL('DiffChange', s:bg0, s:blue)
 "call s:HL('DiffText',   s:bg0, s:yellow)
 
 " Alternative setting
-call s:HL('DiffChange', s:aqua, s:bg0, s:inverse)
-call s:HL('DiffText',   s:yellow, s:bg0, s:inverse)
+call s:HL('DiffChange', s:fg1, s:bg0)
+call s:HL('DiffText',   s:orange, s:bg1, s:bold)
 
 " }}}
 " Spelling: {{{
@@ -671,9 +671,9 @@ let g:niji_light_colours = g:rbpt_colorpairs
 " GitGutter: {{{
 
 hi! link GitGutterAdd deusGreenSign
-hi! link GitGutterChange deusAquaSign
+hi! link GitGutterChange deusPurpleSign
 hi! link GitGutterDelete deusRedSign
-hi! link GitGutterChangeDelete deusAquaSign
+hi! link GitGutterChangeDelete deusYellowSign
 
 " }}}
 " GitCommit: "{{{
@@ -777,8 +777,8 @@ call s:HL('BufTabLineActive', s:fg4, s:bg2)
 call s:HL('BufTabLineHidden', s:fg1, s:bg2)
 call s:HL('BufTabLineFill', s:bg0, s:bg2)
 
-hi StatusLine ctermbg=10 ctermfg=10 cterm=bold guibg=NONE guifg=NONE gui=NONE
-hi StatusLineNC ctermbg=10 ctermfg=10 cterm=NONE guibg=NONE guifg=NONE gui=NONE
+" hi StatusLine ctermbg=10 ctermfg=10 cterm=bold guibg=NONE guifg=NONE gui=NONE
+" hi StatusLineNC ctermbg=10 ctermfg=10 cterm=NONE guibg=NONE guifg=NONE gui=NONE
 
 " }}}
 " }}}
@@ -905,9 +905,9 @@ hi! link  EnumValueTag deusAqua
 hi! link  UnionTag deusPurple
 hi! link  FieldTag deusPurple
 hi! link  LocalVariableTag deusOrange
-hi! link  FunctionTag deusGreen 
+hi! link  FunctionTag deusGreen
 hi! link  MethodTag deusGreen
-hi! link  FunctionParameterTag deusPurpleBold 
+hi! link  FunctionParameterTag deusPurpleBold
 hi! link  TemplateTypeParameterTag deusPurple
 hi! link  TemplateNonTypeParameterTag deusRedBold
 hi! link  TemplateTemplateParameterTag deusRed
@@ -931,7 +931,7 @@ hi! link pythonImport deusBlue
 hi! link pythonRun deusBlue
 hi! link pythonCoding deusBlue
 hi! link pythonOperator deusRed
-hi! link pythonExceptions deusPurple
+hi! link pythonExceptions deus
 hi! link pythonBoolean deusPurple
 hi! link pythonDot deusFg3
 
