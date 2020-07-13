@@ -215,8 +215,8 @@ if exists('g:deus_hls_cursor')
   let s:hls_cursor = get(s:ds, g:deus_hls_cursor)
 endif
 
-let s:number_column = s:bg4
-let s:sign_column = s:bg2
+let s:number_column = s:fg4
+let s:sign_column = s:fg4
 
 if exists('g:gitgutter_override_sign_column_highlight') &&
       \ g:gitgutter_override_sign_column_highlight == 1
@@ -234,7 +234,7 @@ if exists('g:deus_color_column')
   let s:color_column = get(s:ds, g:deus_color_column)
 endif
 
-let s:vert_split = s:bg2
+let s:vert_split = s:bg0
 if exists('g:deus_vert_split')
   let s:vert_split = get(s:ds, g:deus_vert_split)
 endif
@@ -380,7 +380,7 @@ endif
 
 if version >= 700
   " Screen line that the cursor is
-  call s:HL('CursorLine',   s:none, s:bg2)
+  call s:HL('CursorLine', s:none, s:bg0, s:bold)
   " Screen column that the cursor is
   hi! link CursorColumn CursorLine
 
@@ -393,7 +393,7 @@ if version >= 700
   hi! link TabLine TabLineFill
 
   " Match paired bracket under the cursor
-  call s:HL('MatchParen', s:none, s:bg3, s:bold)
+  call s:HL('MatchParen', s:red, s:bg3, s:bold)
 endif
 
 if version >= 703
@@ -404,7 +404,7 @@ if version >= 703
   call s:HL('Conceal', s:blue, s:none)
 
   " Line number of CursorLine
-  call s:HL('CursorLineNr', s:fg1, s:bg2)
+  call s:HL('CursorLineNr', s:fg1, s:bg0)
 endif
 
 " Weird black color breaks
@@ -548,13 +548,13 @@ hi! link Typedef deusYellow
 
 if version >= 700
   " Popup menu: normal item
-  call s:HL('Pmenu', s:orange, s:bg0, s:bold)
+  call s:HL('Pmenu', s:fg0, s:bg0)
   " Popup menu: selected item
-  call s:HL('PmenuSel', s:bg2, s:blue, s:bold)
+  call s:HL('PmenuSel', s:bg0, s:blue, s:bold)
   " Popup menu: scrollbar
-  call s:HL('PmenuSbar', s:none, s:bg2)
+  call s:HL('PmenuSbar', s:none, s:bg0)
   " Popup menu: scrollbar thumb
-  call s:HL('PmenuThumb', s:none, s:bg4)
+  call s:HL('PmenuThumb', s:none, s:bg0)
 endif
 
 " }}}
@@ -598,7 +598,7 @@ highlight link CocInfoSign deusAquaSign
 highlight link CocHintSign deusGreenSign
 
 " Text highlights
-call s:HL('CocHighlightText', s:fg1, s:bg2)
+call s:HL('CocHighlightText', s:fg1, s:bg0)
 "}}}
 " EasyMotion: {{{
 
