@@ -548,13 +548,13 @@ hi! link Typedef deusYellow
 
 if version >= 700
   " Popup menu: normal item
-  call s:HL('Pmenu', s:fg0, s:bg0)
+  call s:HL('Pmenu', s:orange, s:bg0, s:bold)
   " Popup menu: selected item
   call s:HL('PmenuSel', s:bg0, s:blue, s:bold)
   " Popup menu: scrollbar
-  call s:HL('PmenuSbar', s:none, s:bg0)
+  call s:HL('PmenuSbar', s:blue, s:bg0)
   " Popup menu: scrollbar thumb
-  call s:HL('PmenuThumb', s:none, s:bg0)
+  call s:HL('PmenuThumb', s:red, s:bg0)
 endif
 
 " }}}
@@ -1218,4 +1218,4 @@ endfunction
 " }}}
 " }}}
 
-" vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker:
+" vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fdl=1:
