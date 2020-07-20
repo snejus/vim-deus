@@ -1207,13 +1207,13 @@ hi! link jsonString deusFg1
 " Utility Functions {{{
 " Search Highlighting Cursor {{{
 
-function! DeusHlsShowCursor()
-  call s:HL('Cursor', s:bg0, s:hls_cursor)
-endfunction
+" function! DeusHlsShowCursor()
+"   call s:HL('Cursor', s:bg0, s:hls_cursor)
+" endfunction
 
-function! DeusHlsHideCursor()
-  call s:HL('Cursor', s:none, s:none, s:inverse)
-endfunction
+" function! DeusHlsHideCursor()
+"   call s:HL('Cursor', s:none, s:none, s:inverse)
+" endfunction
 
 " }}}
 " }}}
