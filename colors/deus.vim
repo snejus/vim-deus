@@ -104,9 +104,9 @@ let s:ds.light4_256  = ['#a89984', 246]     " 168-153-132
 
 let s:ds.bright_red     = ['#fb4934', 167]     " 251-73-52
 let s:ds.bright_green   = ['#98C379', 142]     " 184-187-38
-let s:ds.bright_yellow  = ['#fabd2f', 214]     " 250-189-47
+let s:ds.bright_yellow  = ['#e4b175', 214]     " 250-189-47
 let s:ds.golden         = ['#edb879', 214]     " 250-189-47
-let s:ds.bright_blue    = ['#83a598', 109]     " 131-165-152
+let s:ds.bright_blue    = ['#839ac9', 109]     " 131-165-152
 let s:ds.bright_purple  = ['#C678DD', 175]     " 211-134-155
 let s:ds.bright_aqua    = ['#8ec07c', 108]     " 142-192-124
 let s:ds.bright_orange  = ['#fe8019', 208]     " 254-128-25
@@ -460,7 +460,10 @@ call s:HL('LineNr', s:number_column)
 call s:HL('SignColumn', s:none, s:sign_column)
 
 " Line used for closed folds
-call s:HL('Folded', s:blue, s:bg0, s:bold)
+" same blue
+"
+call s:HL('Folded', s:yellow, s:bg0, s:bold)
+" call s:HL('Folded', s:blue, s:bg0, s:bold)
 " Column where folds are displayed
 call s:HL('FoldColumn', s:gray, s:bg2)
 
