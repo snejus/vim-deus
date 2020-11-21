@@ -102,15 +102,15 @@ let s:ds.light3      = ['#bdae93', 248]     " 189-174-147
 let s:ds.light4      = ['#a89984', 246]     " 168-153-132
 let s:ds.light4_256  = ['#a89984', 246]     " 168-153-132
 
+let s:ds.red            = ['#ff557f', 167]     " 251-73-52
 let s:ds.bright_red     = ['#fb4934', 167]     " 251-73-52
-let s:ds.bright_green   = ['#98C379', 142]     " 184-187-38
-let s:ds.bright_yellow  = ['#e4b175', 214]     " 250-189-47
+let s:ds.bright_green   = ['#a7cd81', 142]     " 184-187-38
+let s:ds.bright_yellow  = ['#edb879', 214]     " 250-189-47
 let s:ds.golden         = ['#edb879', 214]     " 250-189-47
-let s:ds.bright_blue    = ['#839ac9', 109]     " 131-165-152
-let s:ds.bright_purple  = ['#C678DD', 175]     " 211-134-155
-let s:ds.bright_aqua    = ['#8ec07c', 108]     " 142-192-124
+let s:ds.bright_blue    = ['#6495ed', 109]     " 131-165-152
+let s:ds.bright_purple  = ['#8e6ebc', 175]     " 211-134-155
+let s:ds.bright_aqua    = ['#87ceeb', 108]     " 142-192-124
 let s:ds.bright_orange  = ['#fe8019', 208]     " 254-128-25
-
 " }}}
 " Setup Emphasis: {{{
 
@@ -174,7 +174,7 @@ let s:none = ['NONE', 'NONE']
   let s:pink   = s:ds.light0
 " reset to 16 colors fallback
 "if g:deus_termcolors == 16
-  "let s:bg0[1]    = NONE
+  "let s:bg0[1]    = 'NONE'
   "let s:fg4[1]    = 7
   "let s:gray[1]   = 8
   "let s:red[1]    = 9
@@ -702,19 +702,33 @@ hi! link vimContinue deusFg3
 " }}}
 " Python: {{{
 
-hi! link pythonBuiltin deusOrange
-hi! link pythonBuiltinObj deusOrange
-hi! link pythonBuiltinFunc deusOrange
-hi! link pythonFunction deusAqua
-hi! link pythonDecorator deusRed
-hi! link pythonInclude deusBlue
-hi! link pythonImport deusBlue
-hi! link pythonRun deusBlue
-hi! link pythonCoding deusBlue
+" types, builtin objects
+hi! link pythonBuiltin deusPurple
+" callables
+hi! link pythonFunction deusBlueBold
+" if / else
+hi! link pythonConditional deusRedBold
+" and / in / or / not
 hi! link pythonOperator deusRed
-hi! link pythonExceptions deus
-hi! link pythonBoolean deusPurple
-hi! link pythonDot deusFg3
+" def / return
+hi! link pythonStatement deusOrangeBold
+" @ symbol
+hi! link pythonDecorator deusRedBold
+" name
+hi! link pythonDecoratorName deusRedBold
+" from ...  import
+hi! link pythonInclude deusGreen
+hi! link pythonExceptions deusOrangeBold
+hi! link pythonString deusYellow
+hi! link pythonAttribute deusOrangeBold
+
+" hi! link pythonImport deusAqua
+" hi! link pythonRun deusBlue
+" hi! link pythonCoding deusAqua
+" hi! link pythonBoolean deusPurple
+" hi! link pythonDot deusFg3
+" hi! link pythonBuiltinFunc deusOrange
+" hi! link pythonBuiltinObj deusAqua
 
 " }}}
 " CSS: {{{
