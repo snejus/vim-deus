@@ -18,10 +18,6 @@ endif
 
 let g:colors_name='deus'
 
-if !has('gui_running') && &t_Co != 256
-  finish
-endif
-
 " }}}
 " Global Settings: {{{
 
@@ -372,6 +368,7 @@ call s:HL('deusAquaSign', s:aqua, s:sign_column, s:invert_signs)
 
 " Normal text
 call s:HL('Normal', s:fg1, s:bg0)
+call s:HL('vimCommentTitle', s:fg4_256, s:none, s:bold . s:italicize_comments)
 
 " Correct background (see issue #7):
 " --- Problem with changing between dark and light on 256 color terminal
@@ -561,7 +558,7 @@ if version >= 700
   " Popup menu: scrollbar
   call s:HL('PmenuSbar', s:blue, s:bg0)
   " Popup menu: scrollbar thumb
-  call s:HL('PmenuThumb', s:red, s:bg0)
+  call s:HL('PmenuThumb', s:red, s:fg2)
 endif
 
 " }}}
@@ -569,12 +566,12 @@ endif
 
 call s:HL('DiffDelete', s:red, s:bg0, s:bold)
 call s:HL('DiffAdd',    s:green, s:bg0, s:bold)
-"call s:HL('DiffChange', s:bg0, s:blue)
-"call s:HL('DiffText',   s:bg0, s:yellow)
+call s:HL('DiffChange', s:blue, s:bg4, s:bold)
+call s:HL('DiffText',   s:bg0, s:yellow)
 
 " Alternative setting
-call s:HL('DiffChange', s:fg1, s:bg0)
-call s:HL('DiffText',   s:orange, s:bg1, s:bold)
+" call s:HL('DiffChange', s:fg1, s:bg0)
+" call s:HL('DiffText',   s:orange, s:bg1, s:bold)
 
 " }}}
 " Spelling: {{{
@@ -625,71 +622,54 @@ call s:HL('NormalFloat', s:fg1, s:bg2)
 " }}}
 " }}}
 " Language syntax {{{
+
+" {{{ ALE
+hi! link AleWarningSign deusYellowSign
+hi! link AleErrorSign deusRedSign
+" }}}
+
+" GitCommit: "{{{
+
+hi! link gitcommitSelectedFile deusBlue
+hi! link gitcommitDiscardedFile deusRed
+
+" }}}
+" Signify: {{{
+
+hi! link SignifySignAdd deusGreenSign
+hi! link SignifySignChange deusAquaSign
+hi! link SignifySignDelete deusRedSign
+hi! SignifySignAdd guibg=#000000 guifg=#ffffff
+hi! SignifySignDelete guibg=#000000 guifg=#ffffff
+hi! SignifySignChange guibg=#000000 guifg=#ffffff
+
+" }}}
+" Syntastic: {{{
+
+call s:HL('SyntasticError', s:none, s:none, s:undercurl, s:red)
+call s:HL('SyntasticWarning', s:none, s:none, s:undercurl, s:yellow)
+
+hi! link SyntasticErrorSign deusRedSign
+hi! link SyntasticWarningSign deusYellowSign
+
+" }}}
+" Signature: {{{
+hi! link SignatureMarkText   deusBlueSign
+hi! link SignatureMarkerText deusPurpleSign
+" }}}
 " Diff: {{{
 
 hi! link diffAdded deusGreen
 hi! link diffRemoved deusRed
 hi! link diffChanged deusAqua
 
-hi! link diffFile deusOrange
+hi! link diffFile deusViolet
 hi! link diffNewFile deusYellow
 
 hi! link diffLine deusBlue
 
 " }}}
-" Html: {{{
-
-hi! link htmlTag deusBlue
-hi! link htmlEndTag deusBlue
-
-hi! link htmlTagName deusAquaBold
-hi! link htmlArg deusAqua
-
-hi! link htmlScriptTag deusPurple
-hi! link htmlTagN deusFg1
-hi! link htmlSpecialTagName deusAquaBold
-
-call s:HL('htmlLink', s:fg4, s:none, s:underline)
-
-hi! link htmlSpecialChar deusOrange
-
-call s:HL('htmlBold', s:vim_fg, s:vim_bg, s:bold)
-call s:HL('htmlBoldUnderline', s:vim_fg, s:vim_bg, s:bold . s:underline)
-call s:HL('htmlBoldItalic', s:vim_fg, s:vim_bg, s:bold . s:italic)
-call s:HL('htmlBoldUnderlineItalic', s:vim_fg, s:vim_bg, s:bold . s:underline . s:italic)
-
-call s:HL('htmlUnderline', s:vim_fg, s:vim_bg, s:underline)
-call s:HL('htmlUnderlineItalic', s:vim_fg, s:vim_bg, s:underline . s:italic)
-call s:HL('htmlItalic', s:vim_fg, s:vim_bg, s:italic)
-
-" }}}
-" Xml: {{{
-
-hi! link xmlTag deusBlue
-hi! link xmlEndTag deusBlue
-hi! link xmlTagName deusBlue
-hi! link xmlEqual deusBlue
-hi! link docbkKeyword deusAquaBold
-
-hi! link xmlDocTypeDecl deusGray
-hi! link xmlDocTypeKeyword deusPurple
-hi! link xmlCdataStart deusGray
-hi! link xmlCdataCdata deusPurple
-hi! link dtdFunction deusGray
-hi! link dtdTagName deusPurple
-
-hi! link xmlAttrib deusAqua
-hi! link xmlProcessingDelim deusGray
-hi! link dtdParamEntityPunct deusGray
-hi! link dtdParamEntityDPunct deusGray
-hi! link xmlAttribPunct deusGray
-
-hi! link xmlEntity deusOrange
-hi! link xmlEntityPunct deusOrange
-" }}}
 " Vim: {{{
-
-call s:HL('vimCommentTitle', s:fg4_256, s:none, s:bold . s:italicize_comments)
 
 hi! link vimNotation deusOrange
 hi! link vimBracket deusOrange
@@ -703,7 +683,7 @@ hi! link vimContinue deusFg3
 " Python: {{{
 
 " types, builtin objects
-hi! link pythonBuiltin deusPurple
+hi! link pythonBuiltin deusPurpleBold
 " callables
 hi! link pythonFunction deusBlueBold
 " if / else
@@ -729,41 +709,6 @@ hi! link pythonAttribute deusOrangeBold
 " hi! link pythonDot deusFg3
 " hi! link pythonBuiltinFunc deusOrange
 " hi! link pythonBuiltinObj deusAqua
-
-" }}}
-" CSS: {{{
-
-hi! link cssBraces deusBlue
-hi! link cssFunctionName deusYellow
-hi! link cssIdentifier deusOrange
-hi! link cssClassName deusGreen
-hi! link cssColor deusBlue
-hi! link cssSelectorOp deusBlue
-hi! link cssSelectorOp2 deusBlue
-hi! link cssImportant deusGreen
-hi! link cssVendor deusFg1
-
-hi! link cssTextProp deusAqua
-hi! link cssAnimationProp deusAqua
-hi! link cssUIProp deusYellow
-hi! link cssTransformProp deusAqua
-hi! link cssTransitionProp deusAqua
-hi! link cssPrintProp deusAqua
-hi! link cssPositioningProp deusYellow
-hi! link cssBoxProp deusAqua
-hi! link cssFontDescriptorProp deusAqua
-hi! link cssFlexibleBoxProp deusAqua
-hi! link cssBorderOutlineProp deusAqua
-hi! link cssBackgroundProp deusAqua
-hi! link cssMarginProp deusAqua
-hi! link cssListProp deusAqua
-hi! link cssTableProp deusAqua
-hi! link cssFontProp deusAqua
-hi! link cssPaddingProp deusAqua
-hi! link cssDimensionProp deusAqua
-hi! link cssRenderProp deusAqua
-hi! link cssColorProp deusAqua
-hi! link cssGeneratedContentProp deusAqua
 
 " }}}
 " JavaScript: {{{
